@@ -6,6 +6,7 @@ import com.mateus.tasks.entity.Task;
 import com.mateus.tasks.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,7 +21,8 @@ public class TaskService {
     }
 
     public void sendNotificationForDueTasks(){
-        List<Task> tasks = taskRepository.findDueTask();
+        LocalDateTime deadline = LocalDateTime.now().plusDays(1);
+        List<Task> tasks = taskRepository.findTasksDueWithinDeadline(deadline);
 
         tasks.forEach(task -> {
             NotificationRequest notificationRequest = new NotificationRequest(
