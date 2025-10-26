@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    @Query("select t from Task t where t.dueDate <= :deadeline and t.notified = false ")
+    @Query("select t from Task t where t.dueDate <= :deadline and t.notified = false ")
     List<Task> findTasksDueWithinDeadline(LocalDateTime deadline);
 }

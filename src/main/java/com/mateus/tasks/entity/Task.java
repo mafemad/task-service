@@ -1,5 +1,6 @@
 package com.mateus.tasks.entity;
 
+import com.mateus.tasks.controller.TaskRequest;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,13 @@ public class Task {
         this.email = email;
         this.dueDate = dueDate;
         this.notified = notified;
+    }
+
+    public Task (TaskRequest taskRequest) {
+        this.email = taskRequest.email();
+        this.title = taskRequest.title();
+        this.dueDate = taskRequest.dueDate();
+        this.notified = taskRequest.notified();
     }
 
     public Long getId() {

@@ -29,6 +29,7 @@ public class TaskService {
                     "sua tarefa: " + task.getTitle() + "esta prestes a expirar", task.getEmail());
             notificationClient.sendNotification(notificationRequest);
             task.setNotified(true);
+            taskRepository.save(task);
         });
 
     }

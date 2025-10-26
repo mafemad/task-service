@@ -21,7 +21,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+    public ResponseEntity<Task> createTask(@RequestBody TaskRequest taskRequest) {
+        Task task = new Task(taskRequest);
         return new ResponseEntity<>(taskRepository.save(task), HttpStatus.CREATED);
     }
 }
